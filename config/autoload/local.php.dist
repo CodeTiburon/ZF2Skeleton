@@ -1,0 +1,12 @@
+<?php
+
+return [
+    'db' => [
+        'username' => 'root',
+        'password' => '',
+    ],
+    'phpSettings' => [
+        'display_startup_errors' => true,
+        'display_errors'         => true,
+    ],
+];

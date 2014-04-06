@@ -1,0 +1,37 @@
+<table class="mail_body"
+       style="border-collapse: collapse; border-spacing: 0; padding: 0; margin: 0 auto; width: 520px;">
+    <tbody>
+    <tr>
+        <td style="border-collapse: collapse; border-spacing: 0; padding: 0;">
+            <p style="font-size: 14px; color: #333333; font-family: open_sansregular, Arial, serif; margin: 14px 0; text-align: left;">
+                Dear <?=$firstName;?>,</p>
+
+            <p style="font-size: 14px; color: #333333; font-family: open_sansregular, Arial, serif; margin: 14px 0; text-align: left;">
+                Congratulations! You have been successfully registered at <a href="<?=$baseUrl . $this->url('home');?>">LINKAVIE.com</a>.
+                In order to finalize your registration, please click on the following button.</p>
+
+            <table class="button" bgcolor="333333"
+                   style="position: relative; border-collapse: collapse; border-spacing: 0; padding: 0; border-radius: 7px; line-height: 20px; margin: 14px auto;">
+                <tbody>
+                <tr>
+                    <td style="border-collapse: collapse; border-spacing: 0; padding: 12px 15px 12px 45px; position: relative; text-align: center;">
+                        <a href="<?=$baseUrl . $this->url('confirmation', ['hash' => $hash, 'lang' => $lang]);?>"
+                           style="color: #ffffff; text-decoration: none; width: 150px;"><img
+                                src="http://linkavie.com/assets/mail/arrow-icon.png"
+                                style="border: 0 none; height: 20px; line-height: 100%; outline: none; text-decoration: none; left: 15px; position: absolute; top: 12px; width: 20px;">Confirm</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <p style="font-size: 14px; color: #333333; font-family: open_sansregular, Arial, serif; margin: 14px 0; text-align: left;">
+                Enjoy the LINKAVIE experience !</p>
+
+	        <p style="font-size: 14px; color: #333333; font-family: open_sansregular, Arial, serif; margin: 14px 0; text-align: left;">
+		        Thanks!<br>
+		        The LINKAVIE team<br>
+		        <a href="mailto:contact@linkavie.com">contact@linkavie.com</a></p>
+        </td>
+    </tr>
+    </tbody>
+</table>

@@ -1,0 +1,23 @@
+<?php if ($this->pageCount > 1) { ?>
+    <div class="pagination">
+        <ul>
+            <li<?=isset($this->previous) ? '' : ' class="disabled"'; ?>>
+                <a href="javascript:void(0);" onclick="<?=$this->ajaxFunction . '(' . $this->first . ');'; ?>">&ll;</a>
+            </li>
+            <li<?php echo isset($this->previous) ? '' : ' class="disabled"'; ?>>
+                <a href="javascript:void(0);" onclick="<?=$this->ajaxFunction . '(' . $this->previous . ');'; ?>">&lt;</a>
+            </li>
+            <?php foreach ($this->pagesInRange as $page) { ?>
+                <li<?=$page == $this->current ? ' class="disabled"' : ''; ?>>
+                    <a href="javascript:void(0);" onclick="<?=$this->ajaxFunction . '(' . $page . ');'; ?>"><?=$page; ?></a>
+                </li>
+            <?php } ?>
+            <li<?=isset($this->next) ? '' : ' class="disabled"'; ?>>
+                <a href="javascript:void(0);" onclick="<?=$this->ajaxFunction . '(' . $this->next . ');'; ?>">&gt;</a>
+            </li>
+            <li<?=isset($this->next) ? '' : ' class="disabled"'; ?>>
+                <a href="javascript:void(0);" onclick="<?=$this->ajaxFunction . '(' . $this->last . ');'; ?>">&gg;</a>
+            </li>
+        </ul>
+    </div>
+<?php } ?>

@@ -1,0 +1,25 @@
+<?php
+foreach ($this->contacts as $contact) {
+
+    $userName = $contact['first_name'] . ' ' . $contact['last_name'];
+?>
+    <div class="contact-card">
+        <div class="profile-picture">
+            <a href="#">
+                <img src="<?=$this->userAvatar($contact['avatar'], $contact['id'], '100x100')?>"
+                     alt="<?=$userName?>">
+            </a>
+        </div>
+        <h2 class="username">
+            <a href="#"><?=$userName?></a>
+        </h2>
+        <h4 class="city"><?=$userName . ',' . $this->translate('Hungary')?></h4>
+        <h4 class="dob"><?=$this->translate('D.O.B')?>: 22 - 11 - 1976</h4>
+        <a href="<?=$this->url('library/shareAlbums', ['ownerId' => $contact['id']])?>" class="more"><span
+                    class="icon-album"><?=$this->translate('View More')?></span></a>
+        <?php if (!empty($contact['link-vault'])) { ?>
+            <a href="<?=$this->basePath($contact['link-vault'])?>" class="more"><span
+                    class="icon-vault"><?=$this->translate('View More')?></span></a>
+        <?php } ?>
+    </div>
+<?php } ?>

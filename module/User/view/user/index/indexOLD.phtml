@@ -1,0 +1,163 @@
+<?php
+$this->joinStylesheet('user/dashboard');
+
+$user = $this->currentUser();
+?>
+
+<div id="dashboard">
+    <header>
+        <div class="container">
+            <div id="user-info">
+                <div id="user-picture"><a href="#"><img src="<?php
+                       echo $this->userAvatar($user->avatar, $user->id, '168x168'); ?>" alt=""/></a></div>
+                <h2 id="user-name"><?php echo $user->first_name . ' ' . $user->last_name; ?></h2>
+
+                <h3 id="user-description">Fashion Designer, Le Mont St Michel.</h3>
+
+                <h3 id="user-address"><?php echo $this->translate('Paris'); ?>, <?php echo $this->translate(
+                        'France'
+                    ); ?>.</h3>
+            </div>
+        </div>
+    </header>
+    <div id="news">
+        <div class="container">
+            <div id="adverts">
+                <a href="#"><img src="http://lorempixel.com/323/434/fashion/1" alt="Advert"/></a>
+                <a href="#"><img src="http://lorempixel.com/323/434/sports/2" alt="Advert"/></a>
+            </div>
+            <div id="news-list">
+                <?php if ($this->currentUser()->msg_howtostart) { ?>
+                <div class="post">
+                    <div class="thumbnail">
+                        <a href="#"><img src="<?php echo $this->basePath(
+                                '/assets/linkavie/img/linkavie-logo-100x100.jpg'
+                            ); ?>" alt="Thumbnail"/></a>
+                    </div>
+                    <div class="content">
+                        <h3><?php echo $this->translate('Welcome to LINKAVIE !....How to start?'); ?></h3>
+                        <ul>
+                            <li><?php echo $this->translate('Complete your profile by adding your picture.') .
+                                    sprintf(
+                                        $this->translate('More info %shere%s'),
+                                        '<a href="' . $this->url('faq') . '">',
+                                        '</a>'
+                                    ); ?></li>
+                            <li><?php echo $this->translate(
+                                        'Store, organize and secure your pictures by uploading them to your personal Vault.'
+                                    ) .
+                                    sprintf(
+                                        $this->translate('More info %shere%s'),
+                                        '<a href="' . $this->url('faq') . '">',
+                                        '</a>'
+                                    ); ?></li>
+                            <li><?php echo $this->translate(
+                                        'Start creating a rich Digital album and share it with friends.'
+                                    ) .
+                                    sprintf(
+                                        $this->translate('More info %shere%s'),
+                                        '<a href="' . $this->url('faq') . '">',
+                                        '</a>'
+                                    ); ?></a></li>
+                            <li><?php echo $this->translate(
+                                        'Invite your friends to become LINKAVIE friends and share your emotions with them.'
+                                    ) .
+                                    sprintf(
+                                        $this->translate('More info %shere%s'),
+                                        '<a href="' . $this->url('faq') . '">',
+                                        '</a>'
+                                    ); ?></li>
+                            <li><?php echo $this->translate(
+                                        'Share pictures or share a page, chapter or your entire Digital album with your friends.'
+                                    ) .
+                                    sprintf(
+                                        $this->translate('More info %shere%s'),
+                                        '<a href="' . $this->url('faq') . '">',
+                                        '</a>'
+                                    ); ?></li>
+	                        <li><?php echo sprintf(
+			                        $this->translate('Visit our %sblog%s'),
+			                        '<a href="http://blog.linkavie.com/en/">',
+			                        '</a>'
+		                        ); ?></li>
+                        </ul>
+                        <p><?php echo $this->translate(
+                                'Enjoy the LINKAVIE experience, many more features are coming!'
+                            ); ?></p>
+                    </div>
+                </div>
+                <?php } ?>
+                <div class="post">
+                    <div class="thumbnail">
+                        <a href="#"><img src="http://lorempixel.com/92/92/nature/6" alt="Thumbnail"/></a>
+                    </div>
+                    <div class="content">
+                        <h3>Malaysia add new pictures to the album <a href="#">Nature</a></h3>
+
+                        <p class="gallery"><a href="#"><img src="http://lorempixel.com/84/84/nature/1"
+                                                            alt="Nature 1"></a>
+                            <a href="#"><img src="http://lorempixel.com/84/84/nature/2" alt="Nature 2"></a>
+                            <a href="#"><img src="http://lorempixel.com/84/84/nature/3" alt="Nature 3"></a></p>
+
+                        <div class="date">1st of December 2013</div>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="thumbnail">
+                        <a href="#"><img src="http://lorempixel.com/92/92/city/3" alt="Thumbnail"/></a>
+                    </div>
+                    <div class="content">
+                        <h3>Berlin published new event</h3>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur cum distinctio esse
+                            impedit in magnam nam officia possimus voluptates! Et ex hic laborum laudantium optio quia
+                            quod quos reprehenderit veniam!</p>
+
+                        <div class="date">21st of November 2013</div>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="thumbnail">
+                        <a href="#"><img src="http://lorempixel.com/92/92/nature/6" alt="Thumbnail"/></a>
+                    </div>
+                    <div class="content">
+                        <h3>Malaysia add new pictures to the album <a href="#">Nature</a></h3>
+
+                        <p class="gallery"><a href="#"><img src="http://lorempixel.com/84/84/city/8" alt="Nature 2"></a>
+                            <a href="#"><img src="http://lorempixel.com/84/84/city/9" alt="Nature 3"></a></p>
+
+                        <div class="date">19th of November 2013</div>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="thumbnail">
+                        <a href="#"><img src="http://lorempixel.com/92/92/city/4" alt="Thumbnail"/></a>
+                    </div>
+                    <div class="content">
+                        <h3>USA published new event</h3>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad consectetur dicta
+                            eos, maiores maxime mollitia optio pariatur quisquam vitae, voluptas voluptates. Culpa ipsum
+                            iusto tenetur ullam? Aliquam, deleniti, temporibus?</p>
+
+                        <div class="date">6th of November 2013</div>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="thumbnail">
+                        <a href="#"><img src="http://lorempixel.com/92/92/city/5" alt="Thumbnail"/></a>
+                    </div>
+                    <div class="content">
+                        <h3>Islam sent you new message</h3>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci, animi commodi debitis
+                            deleniti error et, eveniet impedit nostrum odio repellat sint. Distinctio eligendi
+                            laboriosam officiis voluptatum. Dicta, ipsum, omnis.</p>
+
+                        <div class="date">2nd of November 2013</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

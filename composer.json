@@ -1,0 +1,57 @@
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.zendframework.com/"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/CodeTiburon/Zf2Db"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/CodeTiburon/Zf2EmailService"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/CodeTiburon/Zf2Acl"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/CodeTiburon/Zf2Multimedia"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "zendframework/zend-config": "2.*",
+        "zendframework/zend-http": "2.*",
+        "zendframework/zend-log": "2.*",
+        "zendframework/zend-authentication": "2.*",
+        "zendframework/zend-db": "2.*",
+        "zendframework/zend-eventmanager": "2.*",
+        "zendframework/zend-filter": "2.*",
+        "zendframework/zend-i18n": "2.*",
+        "zendframework/zend-session": "2.*",
+        "zendframework/zend-stdlib": "2.*",
+        "zendframework/zend-view": "2.*",
+        "zendframework/zend-modulemanager": "2.*",
+        "zendframework/zend-mvc": "2.*",
+        "zendframework/zend-form": "2.*",
+        "zendframework/zend-serializer": "2.*",
+        "zendframework/zend-console": "2.*",
+        "zendframework/zend-di": "2.*",
+        "zendframework/zend-text": "2.*",
+        "zendframework/zend-debug": "2.*",
+        "zendframework/zend-mail": "2.*",
+        "zendframework/zend-permissions-acl": "2.*",
+
+        "php-console/php-console": "dev-master",
+
+        "phing/phing": ">=2.6.1",
+
+        "codetiburon/Zf2Db": "dev-master",
+        "codetiburon/Zf2EmailService": "dev-master",
+        "codetiburon/Zf2Acl": "dev-master",
+        "codetiburon/Zf2Multimedia": "dev-master",
+    }
+}

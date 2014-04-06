@@ -1,0 +1,13 @@
+<?php
+
+return [
+    'smtp' => [
+        'name'              => 'nipsrt',
+        'host'              => '127.0.0.1',
+        'connection_class'  => 'login',
+        'connection_config' => array(
+            'username' => 'info@dd2.dev',
+            'password' => '8745r@d1u$18',
+        ],
+    ],
+];

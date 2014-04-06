@@ -1,0 +1,77 @@
+<?php
+/**
+ * @var $firstName
+ * @var $lastName
+ * @var $request
+ * @var $hash
+ * @var $message
+ * @var $password
+ * @var $email
+ * @var $lang
+ * @var $whoInvited
+ */
+?>
+<table class="mail_body"
+       style="border-collapse: collapse; border-spacing: 0; padding: 0; margin: 0 auto; width: 520px;">
+    <tbody>
+    <tr>
+        <td style="border-collapse: collapse; border-spacing: 0; padding: 0;">
+            <p style="font-size: 14px; color: #333333; font-family: open_sansregular, Arial, serif;
+				margin: 14px 0; text-align: left;">Hi, <?= $whoInvited ?> is willing to invite you on <a
+                    href="<?=$baseUrl . $this->url('home', ['lang' => $lang]); ?>">LINKAVIE</a> to share pictures, videos and
+                Albums. In order to accept
+                invitation, please click the link below. You will just have to enter you first name, last
+                name and change your temporary
+                password:</p>
+
+            <div style="margin: 14px;">
+                <p style="font-size: 14px; color: #333333; font-family: open_sansregular, Arial, serif; margin: 14px 0; text-align: left;">
+                    <span>Your current login is :</span>&nbsp;<span><?= $email ?></span><br>
+                    <span>You current temporary password is:</span>&nbsp;<span><?= $password ?></span></p>
+            </div>
+            <?php if (!empty($hash)) { ?>
+                <table class="button" bgcolor="333333"
+                       style="position: relative; border-collapse: collapse; border-spacing: 0; padding: 0; border-radius: 7px; line-height: 20px; margin: 14px auto;">
+                    <tbody>
+                    <tr>
+                        <td style="border-collapse: collapse; border-spacing: 0; padding: 12px 15px 12px 45px; position: relative; text-align: center;">
+                            <a href="<?=$baseUrl . $this->url('acceptInvite', ['ac_inv' => $hash, 'lang' => $lang]); ?>"
+                               style="color: #ffffff; text-decoration: none; width: 150px;"><img
+                                    src="http://linkavie.com/assets/mail/arrow-icon.png"
+                                    style="border: 0 none; height: 20px; line-height: 100%; outline: none; text-decoration: none; left: 15px; position: absolute; top: 12px; width: 20px;">Accept
+                                invitation</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            <?php } ?>
+            <?php if (!empty($confirmation)) { ?>
+                <table class="button" bgcolor="333333"
+                       style="position: relative; border-collapse: collapse; border-spacing: 0; padding: 0; border-radius: 7px; line-height: 20px; margin: 14px auto;">
+                    <tbody>
+                    <tr>
+                        <td style="border-collapse: collapse; border-spacing: 0; padding: 12px 15px 12px 45px; position: relative; text-align: center;">
+                            <a href="<?=$baseUrl . $this->url('confirmation', ['hash' => $confirmation]); ?>"
+                               style="color: #ffffff; text-decoration: none; width: 150px;"><img
+                                    src="http://linkavie.com/assets/mail/arrow-icon.png"
+                                    style="border: 0 none; height: 20px; line-height: 100%; outline: none; text-decoration: none; left: 15px; position: absolute; top: 12px; width: 20px;">Confirm
+                                account</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            <?php } ?>
+
+            <p style="font-size: 14px; color: #333333; font-family: open_sansregular, Arial, serif; margin: 14px 0; text-align: left;">
+                With LINKAVIE, you can share your Digital life with your friends and family in a very simple
+                and secured way,
+                create events digital albums by your own or collaboratively with other friends, print
+                digital albums and much more.<br>
+                <a href="<?=$baseUrl . $this->url('home'); ?>">Discover LINKAVIE!</a></p>
+
+            <p style="font-size: 14px; color: #333333; font-family: open_sansregular, Arial, serif; margin: 14px 0; text-align: left;">
+                Thanks!<br>
+                The LINKAVIE team<br>
+                <a href="mailto:contact@linkavie.com">contact@linkavie.com</a></p>
+        </td>
+    </tr>
+    </tbody>
+</table>

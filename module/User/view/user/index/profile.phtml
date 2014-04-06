@@ -1,0 +1,120 @@
+<?php
+/**
+ * @var \User\Model\User $user
+ */
+$user = $this->currentUser();
+
+$lang = [
+    'en' => 'English',
+    'fr' => 'French'
+];
+
+$this->inlineScript()
+    ->appendFile($this->basePath('/assets/lib/jquery/jquery.form.min.js'))
+    ->appendFile($this->basePath('/assets/lib/ct/ct.form-ajax.js'))
+	->appendFile($this->basePath('/assets/lib/lodash/2.4.1/lodash.min.js'))
+	->appendFile($this->basePath('/assets/lib/micro-templating/micro-templating.js'))
+    ->appendFile($this->basePath('/assets/linkavie/js/reverse.js'))
+    ->appendFile($this->basePath('/assets/lib/load-image.min.js'))
+    ->appendFile($this->basePath('/assets/lib/jquery.fileupload/jquery.iframe-transport.js'))
+    ->appendFile($this->basePath('/assets/lib/jquery.fileupload/jquery.fileupload.js'))
+    ->appendFile($this->basePath('/assets/lib/jquery.fileupload/jquery.fileupload-process.js'))
+    ->appendFile($this->basePath('/assets/lib/jquery.fileupload/jquery.fileupload-image.js'))
+    ->appendFile($this->basePath('/assets/lib/jquery.fileupload/jquery.fileupload-validate.js'))
+    ->appendFile($this->basePath('/assets/lib/jquery.jcrop/jquery.Jcrop.min.js'))
+    ->appendFile($this->basePath('/modules/user.profile/user.profile.js'))
+;
+
+$this->headLink()->appendStylesheet($this->basePath('/assets/lib/jquery.jcrop/jquery.Jcrop.min.css'));
+
+$this->joinStylesheet('user/profile');
+?>
+<div id="profile-container">
+    <div class="container">
+        <div class="inner">
+            <div class="userpic">
+                <div class="file">
+                    <img src="<?=$this->currentUser('avatar', array('avatarName' => '168x168')); ?>">
+                </div>
+                <div class="controls">
+                    <div class="change-btn">
+                        <span><?php echo $this->translate('Change Picture'); ?></span>
+                        <input class="fileupload" type="file" name="files[]">
+                    </div>
+                </div>
+                <div class="errors"></div>
+            </div>
+            <div id="userprops">
+                <table>
+                    <colgroup class="title">
+                    <colgroup class="value">
+                    <colgroup class="edit">
+                    <thead>
+                        <tr>
+                            <th colspan="3"><?=$this->translate('User Information'); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><?=$this->translate('Name'); ?>:</td>
+                            <td><?=$user->first_name . '&nbsp;' . $user->last_name; ?></td>
+                            <td class="action b-profile-edit" data-type="name"><span class="icon-edit"><?=$this->translate('Edit'); ?></span></td>
+                        </tr>
+                        <tr>
+                            <td><?=$this->translate('Password'); ?>:</td>
+                            <td>********</td>
+                            <td class="action b-profile-edit" data-type="password"><span class="icon-edit"><?=$this->translate('Edit'); ?></span></td>
+                        </tr>
+                        <tr>
+                            <td><?=$this->translate('E-Mail'); ?>:</td>
+                            <td><?=$user->email;?></td>
+                            <td class="action b-profile-edit" data-type="email"><span class="icon-edit"><?=$this->translate('Edit'); ?></span></td>
+                        </tr>
+                        <tr>
+                            <td><?=$this->translate('Gender'); ?>:</td>
+                            <td><?=$user->gender;?></td>
+                            <td class="action b-profile-edit" data-type="gender"><span class="icon-edit"><?=$this->translate('Edit'); ?></span></td>
+                        </tr>
+                        <tr>
+                            <td><?=$this->translate('Language'); ?>:</td>
+                            <td><?=$lang[$user->lang];?></td>
+                            <td class="action b-profile-edit" data-type="lang"><span class="icon-edit"><?=$this->translate('Edit'); ?></span></td>
+                        </tr>
+                        <tr>
+                            <td><?=$this->translate('Date of Birth'); ?>:</td>
+                            <td><?=$user->birth?date('d M Y', $user->birth):'';?></td>
+                            <td class="action b-profile-edit" data-type="birth"><span class="icon-edit"><?=$this->translate('Edit'); ?></span></td>
+                        </tr>
+                        <tr>
+                            <td><?=$this->translate('Place of Birth'); ?>:</td>
+                            <td><?=$user->place_birth;?></td>
+                            <td class="action b-profile-edit" data-type="placeBirth"><span class="icon-edit"><?=$this->translate('Edit'); ?></span></td>
+                        </tr>
+                        <tr>
+                            <td><?=$this->translate('Contact Number'); ?>:</td>
+                            <td><?=$user->contact_number;?></td>
+                            <td class="action b-profile-edit" data-type="contactNumber"><span class="icon-edit"><?=$this->translate('Edit'); ?></span></td>
+                        </tr>
+                        <tr>
+                            <td><?=$this->translate('Address'); ?>:</td>
+                            <td><?=$user->country . '<br/>' . $user->city . '<br/>' . $user->street . '<br/>' .
+                                $user->number_house . '<br/>' . $user->zip_code;?></td>
+                            <td class="action b-profile-edit" data-type="address"><span class="icon-edit"><?=$this->translate('Edit'); ?></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="crop-picture" class="crop-picture include" type="html/reverse-template" title="Select Picture">
+    <form>
+        <input type="hidden" name="coords">
+        <div class="image"></div>
+        <div class="buttons">
+            <button type="submit" name="upload">Upload</button>
+            <button type="button" name="cancel" class="cancel">Cancel</button>
+        </div>
+    </form>
+</script>

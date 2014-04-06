@@ -1,0 +1,16 @@
+<?php
+$this->joinStylesheet('user/contacts');
+$this->inlineScript()->appendFile($this->basePath('/modules/user.contacts/user.contacts.js'));
+?>
+<div id="contacts-page">
+    <div class="container">
+        <div id="contact-list"></div>
+        <div id="invite-friends-message">
+            <h1><?=$this->translate('You have no contacts yet on LINKAVIE!'
+                . '<br>To invite your LINKAVIE FRIENDS and share with them pictures,'
+                . '<br>albums and more,'
+                . '<br>Click the “Add New Contacts” button.'); ?></h1>
+            <a href="#add-contact" class="contact-add"><?=$this->translate('Add New Contacts'); ?></a>
+        </div>
+    </div>
+</div>

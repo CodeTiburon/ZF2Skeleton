@@ -1,0 +1,57 @@
+<?=$this->doctype() . PHP_EOL; ?>
+<html lang="en">
+    <head>
+    <?php
+        $this->headMeta()
+            ->appendHttpEquiv('Content-Type', 'text/html; charset=UTF-8')
+            ->appendHttpEquiv('Content-Language', 'en-US')
+            ->setCharset('UTF-8')
+            ->appendName('keywords', '')
+            ->appendName('description', '')
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0');
+
+        $this->headTitle('LINKAVIE.com' . $this->title)->setSeparator(' - ')->setAutoEscape(false) . PHP_EOL;
+
+
+        $this->headScript();
+
+        echo (strlen($this->headMeta()) ? $this->headMeta()->toString(8).PHP_EOL : '');
+        echo (strlen($this->headTitle()) ? $this->headTitle()->toString(8).PHP_EOL : '');
+        echo (strlen($this->headLink()) ? $this->headLink()->toString(8).PHP_EOL : '');
+        echo (strlen($this->headStyle()) ? $this->headStyle()->toString(8).PHP_EOL : '');
+        echo (strlen($this->headScript()) ? $this->headScript()->toString(8).PHP_EOL : '');
+
+    ?>
+    </head>
+    <body>
+        <div class="container" id="content-container">
+            <div class="row">
+                <?=$this->content; ?>
+            </div>
+        </div>
+        <div id="footer">
+        </div>
+
+        <?php
+        $fm = new \Zend\Mvc\Controller\Plugin\FlashMessenger();
+        $aMessages = [];
+
+        foreach ($fm->getMessages() as $message) {
+            $aMessages[] = ['group' => 'default', 'message' => $message];
+        }
+
+        foreach ($fm->getSuccessMessages() as $message) {
+            $aMessages[] = ['group' => 'success', 'message' => $message];
+        }
+
+        foreach ($fm->getInfoMessages() as $message) {
+            $aMessages[] = ['group' => 'info', 'message' => $message];
+        }
+
+        foreach ($fm->getErrorMessages() as $message) {
+            $aMessages[] = ['group' => 'error', 'message' => $message];
+        }
+
+        ?>
+    </body>
+</html>

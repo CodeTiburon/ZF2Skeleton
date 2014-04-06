@@ -1,0 +1,388 @@
+<?php echo $this->doctype() . PHP_EOL;
+$currentUser = $this->currentUser();
+/**
+ * @var \User\Model\User $owner
+ */
+?>
+<html lang="en">
+<head>
+    <noscript>
+        <meta http-equiv="Refresh" content="0;URL=/browser">
+    </noscript>
+    <?php
+    $this->headMeta()
+        ->appendHttpEquiv('Content-Type', 'text/html; charset=UTF-8')
+        ->appendHttpEquiv('Content-Language', 'en-US')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge,chrome=1')
+        ->setCharset('UTF-8')
+        ->appendName('keywords', '')
+        ->appendName('description', '')
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendName('baseurl', 'width=device-width, initial-scale=1.0');
+
+    $this->headTitle('LINKAVIE.com' . $this->title)->setSeparator(' - ')->setAutoEscape(false);
+
+    $this->headLink(
+        [
+            'rel'  => 'shortcut icon',
+            'type' => 'image/vnd.microsoft.icon',
+            'href' => $this->basePath('/assets/linkavie/img/favicon.ico')
+        ]
+    );
+
+    $this->headLink(
+        [
+            'rel'  => 'stylesheet',
+            'type' => 'text/css',
+            'href' => $this->basePath('/assets/lib/jquery.ui/1.10.3/css/ui-lightness/jquery-ui.min.css')
+        ]
+    );
+
+
+    $this->joinStylesheet('user/layout');
+    $this->joinStylesheet('main');
+    $this->joinStylesheet('global');
+    $this->joinStylesheet('form');
+    $this->joinStylesheet('user/pop-menu');
+
+    $this->headScript();
+
+    echo(strlen($this->headMeta()) ? $this->headMeta()->toString(8) . PHP_EOL : '');
+    echo(strlen($this->headTitle()) ? $this->headTitle()->toString(8) . PHP_EOL : '');
+    echo(strlen($this->headLink()) ? $this->headLink()->toString(8) . PHP_EOL : '');
+    echo(strlen($this->headStyle()) ? $this->headStyle()->toString(8) . PHP_EOL : '');
+    echo(strlen($this->headScript()) ? $this->headScript()->toString(8) . PHP_EOL : '');
+
+    ?>
+</head>
+<body id="page-<?= strtolower(str_replace('/', '-', $this->routeName)); ?>">
+
+<header class="p-main">
+    <div class="container">
+        <div class="header-banner">
+            <a href="<?= $this->url('home'); ?>" class="banner">LINKAVIE</a>
+        </div>
+        <div class="header-bar-buttons">
+            <?php if ($currentUser->id) { ?>
+                <div id="header-profile-menu" class="header-button">
+                    <a href="<?= $this->url('profile'); ?>">
+                        <img src="<?= $this->userAvatar($currentUser->avatar, $currentUser->id, '56x56'); ?>"
+                             alt="<?= $currentUser->first_name . ' ' . $currentUser->last_name; ?>"></a>
+                </div>
+                <div id="header-menu" class="header-button">
+                    <a href="#"><?= $this->translate('Menu'); ?></a>
+                    <nav>
+                        <ul>
+                            <li><a href="<?= $this->url('profile'); ?>"><?= $this->translate('My Account'); ?></a></li>
+                            <li><a href="#" class="<?= (!$currentUser->is_confirmed ? 'access-denied' : ''); ?>">
+                                    <?= $this->translate('My Subscription'); ?></a></li>
+                            <li><a href="http://blog.linkavie.com/en/help"><?= $this->translate('Help'); ?></a></li>
+                            <li><a href="#" class="b-contact-support"><?= $this->translate('Contact Support'); ?></a>
+                            </li>
+                            <li><a href="<?= $this->url('logout'); ?>"><?= $this->translate('Log out'); ?></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            <?php } else { ?>
+	            <a href="/" class="discover-linkavie-link"><?=$this->translate('Discover LINKAVIE')?></a>
+            <?php } ?>
+        </div>
+    </div>
+</header>
+
+<?php if ($currentUser->id) { ?>
+    <?php if ($this->routeName == 'contacts') { ?>
+        <div class="header-bar contacts-menu">
+            <div class="container">
+                <h2><?= $this->translate('My Contacts'); ?></h2>
+
+                <div class="header-bar-buttons">
+                    <div id="contact-add" class="header-button">
+                        <a href="#"><?= $this->translate('Add'); ?></a>
+                    </div>
+                    <div id="contact-filter" class="header-button">
+                        <a href="#"><?= $this->translate('Filter'); ?></a>
+                    </div>
+                    <div id="contact-settings" class="header-button">
+                        <a href="#"><?= $this->translate('Settings'); ?></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
+    <?php if ($this->routeName == 'profile') { ?>
+        <div class="header-bar profile-menu">
+            <div class="container">
+                <h2><?= $this->translate('My Account'); ?></h2>
+
+                <div class="header-bar-buttons">
+                    <div id="contact-settings" class="header-button">
+                        <a href="#"><?= $this->translate('Settings'); ?></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
+    <?php if (!$currentUser->is_confirmed) { ?>
+        <div class="header-bar notification warning">
+            <div class="container">
+                <a href="#" class="close" title="Close">×</a>
+
+                <p><?=
+                    sprintf(
+                        $this->translate(
+                            'WELCOME to LINKAVIE! Please make sure to confirm your registration. ' .
+                            'Review your emails or %sresend%s the confirmation email – %s days left'
+                        ),
+                        '<a href="' . $this->url('resendMessage') . '" class="resend-message">',
+                        '</a>',
+                        ceil((($currentUser->cdate + (86400 * 5)) - time()) / 86400)
+                    ); ?></p>
+            </div>
+        </div>
+    <?php } ?>
+    <?php if (!empty($_COOKIE['congWithReg'])) {
+        setcookie('congWithReg', '', time() - 86400, '/', $this->host);
+        ?>
+        <div class="header-bar notification warning">
+            <div class="container">
+                <a href="#" class="close" title="Close">×</a>
+
+                <p><?=
+                    $this->translate(
+                        'Thanks for confirming your registration and WELCOME to LINKAVIE! ' .
+                        'You can now start uploading pictures in your vault and create a ' .
+                        'Digital album – See in your Dashboard below How to start ?'
+                    ); ?></p>
+            </div>
+        </div>
+    <?php
+    }
+} ?>
+
+<?php if ($this->routeName == 'album' || $this->routeName == 'album/sharePages') {
+	$isOwner = $owner->id == $this->currentUser()->id; ?>
+	<div class="header-bar contacts-menu">
+		<div class="container">
+			<div class="header-button-group">
+				<div id="album-btn-content" class="header-button">
+					<a href="#" title="<?=$this->translate('Summary')?>"></a>
+				</div>
+			</div>
+			<?php if ($isOwner) { ?>
+				<h2 class="header-album-title"></h2>
+			<?php } else { ?>
+				<div class="page-owner">
+					<img src="<?= $this->userAvatar($owner->avatar, $owner->id, '56x56'); ?>">
+
+					<h2 class="header-album-title"></h2>
+
+					<h3><?= $owner->first_name . ' ' . $owner->last_name; ?></h3>
+				</div>
+			<?php } ?>
+			<div class="header-bar-buttons">
+				<div id="album-btn-prevPage" class="header-button">
+					<a href="#"><?= $this->translate('Previous'); ?></a>
+				</div>
+				<div class="album-page-counter header-button">
+					<span></span>
+				</div>
+				<div id="album-btn-nextPage" class="header-button">
+					<a href="#"><?= $this->translate('Next'); ?></a>
+				</div>
+				<?php if ($isOwner && $this->routeName !== 'album/sharePages') { ?>
+					<div id="album-btn-settings" class="header-button">
+						<a href="#" title="<?=$this->translate('Page tools')?>"></a>
+					</div>
+				<?php } ?>
+			</div>
+		</div>
+	</div>
+<?php } ?>
+
+<?php if ($this->routeName == 'vault' || $this->routeName == 'shareFiles') { ?>
+	<?php $isOwner = !isset($owner) || $owner->id == $this->currentUser()->id; ?>
+	<div class="header-bar contacts-menu">
+		<div class="container">
+			<?php if ($isOwner) { ?>
+				<h2><?= $this->translate('My Vault'); ?></h2>
+			<?php } else { ?>
+				<div class="page-owner">
+					<img src="<?= $this->userAvatar($owner->avatar, $owner->id, '56x56'); ?>">
+
+					<h2 class="header-album-title"></h2>
+
+					<h3><?= $owner->first_name . ' ' . $owner->last_name; ?></h3>
+				</div>
+			<?php } ?>
+		</div>
+	</div>
+<?php } ?>
+
+<?php if ($this->routeName == 'library' || $this->routeName == 'library/shareAlbums') { ?>
+	<?php $isOwner = !isset($owner) || $owner->id == $this->currentUser()->id; ?>
+	<div class="header-bar contacts-menu">
+		<div class="container">
+			<?php if ($isOwner) { ?>
+				<h2><?= $this->translate('My Library'); ?></h2>
+			<?php } else { ?>
+				<div class="page-owner">
+					<img src="<?= $this->userAvatar($owner->avatar, $owner->id, '56x56'); ?>">
+
+					<h2 class="header-album-title"></h2>
+
+					<h3><?= $owner->first_name . ' ' . $owner->last_name; ?></h3>
+				</div>
+			<?php } ?>
+
+			<div class="header-bar-buttons">
+				<?php if ($isOwner && $this->routeName !== 'library/shareAlbums') { ?>
+					<div class="library add add-album header-button hidden">
+						<a href="#" title="<?=$this->translate('Add Album')?>"></a>
+					</div>
+					<div class="library add add-shelf header-button hidden">
+						<a href="#" title="<?=$this->translate('Add shelf')?>"></a>
+					</div>
+					<div class="library edit header-button">
+						<a href="#" title="<?=$this->translate('Edit Library')?>"></a>
+					</div>
+				<?php } ?>
+				<div class="library library-set-year header-button">
+					<button type="button" class="pick-year" title="<?=$this->translate('Find Album by year')?>"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php } ?>
+
+<div id="page">
+    <?= $this->content; ?>
+
+    <?php if ($currentUser->id) { ?>
+        <div id="user-menu" class="popup-menu vertical">
+            <div class="content">
+                <div class="user-info">
+                    <img src="<?= $this->userAvatar($currentUser->avatar, $currentUser->id, '100x100'); ?>"
+                         alt="<?= $currentUser->first_name . ' ' . $currentUser->last_name; ?>">
+
+                    <h2><?= $currentUser->first_name . ' ' . $currentUser->last_name; ?></h2>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="<?= $this->url('home') ?>"><?= $this->translate('My Dashboard'); ?></a></li>
+                        <li><a href="<?= $this->url('vault') ?>"><?= $this->translate('My Vault'); ?></a>
+                        </li>
+                        <li><a href="<?= $this->url('library') ?>"><?= $this->translate('My Library'); ?></a></li>
+                        <li><a href="<?= $this->url('album', ['albumId' => $this->currentUser()->album_id]); ?>">
+                                <?= $this->translate('My Life Album'); ?></a></li>
+                        <li><a href="<?= $this->url('contacts'); ?>"
+                               class="<?= (!$currentUser->is_confirmed ? 'access-denied' : '') ?>">
+                                <?= $this->translate('My Contacts'); ?></a></li>
+                        <li><a href="#"><?= $this->translate('LINKAVIE blog'); ?></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <button class="toggle"><?= $this->translate('Turn menu'); ?></button>
+        </div>
+        <div id="user-stats" class="popup-menu horizontal">
+            <div class="content">
+                <ul class="summary"></ul>
+                <div class="progress">
+                    <ul class="bar"></ul>
+                </div>
+            </div>
+            <button class="toggle"><?= $this->translate('Turn menu'); ?></button>
+        </div>
+    <?php } ?>
+</div>
+<?php
+$fm = new Zend\Mvc\Controller\Plugin\FlashMessenger();
+$aMessages = [];
+
+foreach ($fm->getMessages() as $message) {
+    $aMessages[] = ['group' => 'default', 'message' => addslashes($message)];
+}
+
+foreach ($fm->getSuccessMessages() as $message) {
+    $aMessages[] = ['group' => 'success', 'message' => addslashes($message)];
+}
+
+foreach ($fm->getInfoMessages() as $message) {
+    $aMessages[] = ['group' => 'info', 'message' => addslashes($message)];
+}
+
+foreach ($fm->getErrorMessages() as $message) {
+    $aMessages[] = ['group' => 'error', 'message' => addslashes($message)];
+}
+$this->inlineScript()
+
+    ->prependFile($this->basePath('/assets/linkavie/js/user/header.js'))
+    ->prependFile($this->basePath('/assets/linkavie/js/user/slide-menu.js'))
+    ->prependFile($this->basePath('/assets/linkavie/js/form.js'))
+    ->prependFile($this->basePath('/assets/linkavie/js/main.js'))
+    ->prependFile($this->basePath('/assets/lib/ct/ct.form-ajax.js'))
+    ->appendFile($this->basePath('/assets/lib/jquery/jquery.form.min.js'))
+    ->prependFile($this->basePath('/assets/lib/jquery.ui/1.10.3/jquery-ui.min.js'))
+    ->prependFile($this->basePath('/assets/lib/less/less-1.3.3.min.js'))
+    ->prependFile($this->basePath('/assets/lib/modernizr/modernizr.js'))
+    ->prependFile($this->basePath('/assets/lib/jquery/jquery.cookie.js'))
+    ->prependFile($this->basePath('/assets/lib/jquery/jquery.gritter.min.js'))
+    ->prependFile($this->basePath('/assets/lib/jquery/jquery-1.8.3.min.js'))
+    ->prependFile($this->basePath('/assets/linkavie/js/fix-ie-placeholder.js'))
+    ->prependFile($this->basePath('/assets/lib/linkavie/linkavie.translate.js'))
+    ->prependFile($this->basePath('/assets/lib/linkavie/linkavie.ajax.js'))
+    ->prependFile($this->basePath('/assets/lib/lodash/2.4.1/lodash.min.js'))
+    ->appendFile($this->basePath('/modules/support/support.js'));
+
+if ($this->inlineScript()->count()) {
+    echo $this->inlineScript()->toString(8), PHP_EOL;
+}
+
+foreach ($aMessages as $key => $message) { //TODO: Remove HPOS
+    if ($message['group'] == 'info') {
+        unset($aMessages[$key]);
+    }
+}
+
+?>
+<script type="text/javascript">
+    Global = Global ? Global : {};
+    Global.messages = $.parseJSON('<?=json_encode($aMessages); ?>');
+    Global.baseDomain = '<?=$this->host; ?>';
+    Global.baseUrl = '<?=$this->basePath(); ?>';
+    Global.currentUser = $.parseJSON('<?=json_encode(
+    [
+            'first_name'     => $currentUser->first_name,
+            'last_name'      => $currentUser->last_name,
+            'lang'      => $currentUser->lang,
+            'birth'          => $currentUser->birth,
+            'email'          => $currentUser->email,
+            'gender'         => $currentUser->gender,
+            'place_birth'    => $currentUser->place_birth,
+            'contact_number' => $currentUser->contact_number,
+            'country'        => $currentUser->country,
+            'city'           => $currentUser->city,
+            'street'         => $currentUser->street,
+            'number_house'   => $currentUser->number_house,
+            'zip_code'       => $currentUser->zip_code,
+            'sum_weight'     => (int)$currentUser->sum_weight,
+            'max_space'      => (1048576 * $currentUser->bonus_storage) + (2 * 1073741824), // Gb
+    ]
+    ); ?>')
+</script>
+<script id="notify-template" type="text/template">
+    <div class="gritter-notice-wrapper">
+        <div class="gritter-item-wrapper">
+            <div class="gritter-item">
+                <a href="#" class="gritter-close">&times;</a>
+
+                <p>%message%</p>
+            </div>
+        </div>
+    </div>
+</script>
+
+</body>
+</html>

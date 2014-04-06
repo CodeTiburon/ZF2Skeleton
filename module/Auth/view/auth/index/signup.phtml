@@ -1,0 +1,37 @@
+<?php
+/**
+ * @var Auth\Form\Signup $form
+ */
+$form->prepare()
+    ->setAttribute('action', $this->url('signup'));
+$firstName = $form->get('first_name');
+$lastName = $form->get('last_name');
+$email = $form->get('email');
+$password = $form->get('password');
+$confirmPassword = $form->get('cpassword');
+?>
+<div id="signup-container">
+    <div class="container">
+        <?=$this->form()->openTag($form); ?>
+            <nav class="breadcrumbs">
+                <ul>
+                    <li><a href="<?=$this->url('auth') ?>"
+                           class="icon icon-home"></a></li>
+                    <li><?=$this->translate('Sign up') ?></li>
+                </ul>
+            </nav>
+
+            <div class="inputs">
+                <?=$this->formInput($firstName); ?>
+                <?=$this->formInput($lastName); ?>
+                <?=$this->formInput($email); ?>
+                <?=$this->formInput($password); ?>
+                <?=$this->formInput($confirmPassword); ?>
+                <?=$this->formButton($form->get('submit')); ?>
+            </div>
+        <?=$this->form()->closeTag(); ?>
+
+        <p><?=$this->translate('By clicking on the "Register Now" button you accept the LINKAVIE <a
+        href="#">Terms and Conditions</a>'); ?></p>
+    </div>
+</div>
