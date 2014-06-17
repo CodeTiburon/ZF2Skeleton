@@ -1,10 +1,6 @@
 {
     "repositories": [
         {
-            "type": "composer",
-            "url": "https://packages.zendframework.com/"
-        },
-        {
             "type": "vcs",
             "url": "https://github.com/CodeTiburon/Zf2Db"
         },
@@ -52,6 +48,7 @@
         "codetiburon/Zf2Db": "dev-master",
         "codetiburon/Zf2EmailService": "dev-master",
         "codetiburon/Zf2Acl": "dev-master",
-        "codetiburon/Zf2Multimedia": "dev-master",
+        "codetiburon/Zf2Multimedia": "dev-master"
+
     }
 }
