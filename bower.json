@@ -1,0 +1,20 @@
+{
+  "name": "ZF2Skeleton",
+  "version": "0.0.0",
+  "homepage": "https://github.com/CodeTiburon/ZF2Skeleton",
+  "authors": [
+    "artem <seanetartem@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "lodash": "~2.4.1",
+    "bootstrap": "~3.1.1"
+  }
+}

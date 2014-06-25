@@ -1,0 +1,30 @@
+{
+  "name": "ZF2Skeleton",
+  "version": "0.0.0",
+  "description": "ZF2Skeleton ===========",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/CodeTiburon/ZF2Skeleton.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeTiburon/ZF2Skeleton/issues"
+  },
+  "homepage": "https://github.com/CodeTiburon/ZF2Skeleton",
+  "devDependencies": {
+    "bower": "~1.3.5",
+    "gulp": "~3.8.2",
+    "gulp-concat": "~2.2.0",
+    "gulp-uglify": "~0.3.1",
+    "gulp-clean": "~0.3.1",
+    "gulp-util": "~2.2.18",
+    "path": "~0.4.9",
+    "gulp-rename": "~1.2.0",
+    "gulp-minify-css": "~0.3.5"
+  }
+}
