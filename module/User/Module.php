@@ -8,6 +8,16 @@ class Module
 {
     public function onBootstrap(MvcEvent $e)
     {
+        $serviceManager = $e->getApplication()->getServiceManager();
+        /** @var \User\Event\AuthenticationListener $moduleRouteListener */
+        $moduleRouteListener = $serviceManager->get('User\AuthenticationListener');
+
+        /** @var \User\Storage\Session $storage */
+        $storage = $serviceManager->get('User\Storage\SessionStorage');
+        $adapter = $serviceManager->get('Zend\Db\Adapter\Adapter');
+
+        $storage->setDbSessionStorage($adapter);
+        $moduleRouteListener->attach($e->getApplication()->getEventManager());
     }
 
     public function layoutModuleNamespace(MvcEvent $e)

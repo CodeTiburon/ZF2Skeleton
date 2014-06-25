@@ -1,6 +1,6 @@
 <?php
 
-namespace Auth\Storage;
+namespace User\Storage;
 
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Session\SaveHandler\DbTableGateway;

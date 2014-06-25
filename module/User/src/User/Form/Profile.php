@@ -17,12 +17,12 @@ class Profile extends Form implements InputFilterProviderInterface, AdapterAware
      */
     protected $adapter;
 
-    public function setDbAdapter(Adapter $adapter)
+    public function setDbAdapter (Adapter $adapter)
     {
         $this->adapter = $adapter;
     }
 
-    public function __construct()
+    public function __construct ()
     {
         parent::__construct('form-user', ['method' => 'post']);
 
@@ -44,7 +44,7 @@ class Profile extends Form implements InputFilterProviderInterface, AdapterAware
             ->add(['name' => 'zip_code']);
     }
 
-    public function getInputFilterSpecification()
+    public function getInputFilterSpecification ()
     {
         return [
             'email'          => [
@@ -58,9 +58,7 @@ class Profile extends Form implements InputFilterProviderInterface, AdapterAware
                         'name'                   => 'NotEmpty',
                         'break_chain_on_failure' => true,
                         'options'                => [
-                            'messages' => [
-                                'isEmpty' => 'Email is required and can\'t be empty',
-                            ],
+                            'message' => 'Email is required and can\'t be empty'
                         ],
                     ],
                     [
@@ -69,33 +67,17 @@ class Profile extends Form implements InputFilterProviderInterface, AdapterAware
                         'options'                => [
                             'allow'      => Validator\Hostname::ALLOW_ALL,
                             'useMxCheck' => true,
-                            'messages'   => [
-                                'emailAddressInvalidFormat'     => 'Email address doesn\'t appear to be valid.',
-                                'emailAddressInvalidMxRecord'   => 'Email address doesn\'t appear to be valid.',
-                                'emailAddressDotAtom'           => 'Email address doesn\'t appear to be valid.',
-                                'emailAddressQuotedString'      => 'Email address doesn\'t appear to be valid.',
-                                'emailAddressInvalidLocalPart'  => 'Email address doesn\'t appear to be valid.',
-                                'emailAddressInvalidHostname'   => 'Email address doesn\'t appear to be valid.',
-                                'hostnameUnknownTld'            => 'Email address doesn\'t appear to be valid.',
-                                'hostnameInvalidUri'            => 'Email address doesn\'t appear to be valid.',
-                                'hostnameInvalidLocalName'      => 'Email address doesn\'t appear to be valid.',
-                                'hostnameInvalidHostnameSchema' => 'Email address doesn\'t appear to be valid.',
-                                'hostnameInvalidHostname'       => 'Email address doesn\'t appear to be valid.',
-                                'hostnameUndecipherableTld'     => 'Email address doesn\'t appear to be valid.',
-                            ],
+                            'message'    => 'Email address doesn\'t appear to be valid.'
                         ],
                     ],
                     [
                         'name'                   => 'Db\NoRecordExists',
                         'break_chain_on_failure' => true,
                         'options'                => [
-                            'table'    => 'users',
-                            'field'    => 'email',
-                            'adapter'  => $this->adapter,
-                            'messages' => [
-                                'recordFound' => 'This e-mail is already in use.',
-                            ],
-
+                            'table'   => 'users',
+                            'field'   => 'email',
+                            'adapter' => $this->adapter,
+                            'message' => 'This e-mail is already in use.'
                         ],
                     ],
                 ],
@@ -120,7 +102,7 @@ class Profile extends Form implements InputFilterProviderInterface, AdapterAware
                     ['name' => 'NotEmpty'],
                 ],
             ],
-            'lang'      => [
+            'lang'           => [
                 'required'   => true,
                 'filters'    => [
                     ['name' => 'StripTags'],
@@ -167,10 +149,8 @@ class Profile extends Form implements InputFilterProviderInterface, AdapterAware
                     [
                         'name'    => 'Identical',
                         'options' => [
-                            'token'    => 'password',
-                            'messages' => [
-                                'notSame' => 'Entered passwords do not match.',
-                            ],
+                            'token'   => 'password',
+                            'message' => 'Entered passwords do not match.'
                         ],
                     ],
                 ],

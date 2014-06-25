@@ -1,14 +1,14 @@
 <?php
 
-namespace Auth\Factory;
+namespace User\Factory;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Auth\Storage\Session;
+use \Zend\ServiceManager\FactoryInterface;
+use \Zend\ServiceManager\ServiceLocatorInterface;
+use \User\Storage\Session;
 
 class SessionStorageFactory implements FactoryInterface
 {
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function createService (ServiceLocatorInterface $serviceLocator)
     {
         $conf = $serviceLocator->get('Config');
         $config = null;

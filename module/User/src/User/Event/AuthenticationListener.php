@@ -1,6 +1,6 @@
 <?php
 
-namespace Auth\Event;
+namespace User\Event;
 
 use \Zend\Mvc\MvcEvent as MvcEvent;
 use \Zend\ServiceManager\ServiceLocatorInterface;
@@ -87,7 +87,7 @@ class AuthenticationListener implements ServiceLocatorAwareInterface, EventManag
         $auth = new AuthenticationService();
 
         if ($auth->hasIdentity()) {
-            $this->currentUser = $this->usersService->getUser(array('id=?' => $auth->getIdentity()));
+            $this->currentUser = $this->usersService->getUser(['id=?' => $auth->getIdentity()]);
         } else {
             $this->currentUser = new User();
         }

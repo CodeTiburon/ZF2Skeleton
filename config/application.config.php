@@ -2,7 +2,6 @@
 return [
     'modules'                 => [
         'Application',
-        'Auth',
         'Zf2Db',
         'Zf2EmailService',
         'User',

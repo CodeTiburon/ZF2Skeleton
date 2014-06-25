@@ -1,6 +1,6 @@
 <?php
 
-namespace Auth\Form;
+namespace User\Form;
 
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilterProviderInterface;
@@ -17,12 +17,12 @@ class Signup extends Form implements InputFilterProviderInterface, AdapterAwareI
      */
     protected $adapter;
 
-    public function setDbAdapter(Adapter $adapter)
+    public function setDbAdapter (Adapter $adapter)
     {
         $this->adapter = $adapter;
     }
 
-    public function __construct()
+    public function __construct ()
     {
         parent::__construct('signup-form', ['method' => 'post']);
 
@@ -107,11 +107,11 @@ class Signup extends Form implements InputFilterProviderInterface, AdapterAwareI
             );
     }
 
-    public function getInputFilterSpecification()
+    public function getInputFilterSpecification ()
     {
         return
             [
-                'email'         => [
+                'email'      => [
                     'required'   => true,
                     'filters'    => [
                         ['name' => 'StripTags'],
@@ -122,9 +122,7 @@ class Signup extends Form implements InputFilterProviderInterface, AdapterAwareI
                             'name'                   => 'NotEmpty',
                             'break_chain_on_failure' => true,
                             'options'                => [
-                                'messages' => [
-                                    'isEmpty' => 'Email is required and can\'t be empty',
-                                ],
+                                'message' => 'Email is required and can\'t be empty'
                             ],
                         ],
                         [
@@ -133,38 +131,22 @@ class Signup extends Form implements InputFilterProviderInterface, AdapterAwareI
                             'options'                => [
                                 'allow'      => Validator\Hostname::ALLOW_ALL,
                                 'useMxCheck' => true,
-                                'messages'   => [
-                                    'emailAddressInvalidFormat'     => 'Email address doesn\'t appear to be valid.',
-                                    'emailAddressInvalidMxRecord'   => 'Email address doesn\'t appear to be valid.',
-                                    'emailAddressDotAtom'           => 'Email address doesn\'t appear to be valid.',
-                                    'emailAddressQuotedString'      => 'Email address doesn\'t appear to be valid.',
-                                    'emailAddressInvalidLocalPart'  => 'Email address doesn\'t appear to be valid.',
-                                    'emailAddressInvalidHostname'   => 'Email address doesn\'t appear to be valid.',
-                                    'hostnameUnknownTld'            => 'Email address doesn\'t appear to be valid.',
-                                    'hostnameInvalidUri'            => 'Email address doesn\'t appear to be valid.',
-                                    'hostnameInvalidLocalName'      => 'Email address doesn\'t appear to be valid.',
-                                    'hostnameInvalidHostnameSchema' => 'Email address doesn\'t appear to be valid.',
-                                    'hostnameInvalidHostname'       => 'Email address doesn\'t appear to be valid.',
-                                    'hostnameUndecipherableTld'     => 'Email address doesn\'t appear to be valid.',
-                                ],
+                                'message'    => 'Email address doesn\'t appear to be valid.'
                             ],
                         ],
                         [
                             'name'                   => 'Db\NoRecordExists',
                             'break_chain_on_failure' => true,
                             'options'                => [
-                                'table'    => 'users',
-                                'field'    => 'email',
-                                'adapter'  => $this->adapter,
-                                'messages' => [
-                                    'recordFound' => 'This e-mail is already in use.',
-                                ],
-
+                                'table'   => 'users',
+                                'field'   => 'email',
+                                'adapter' => $this->adapter,
+                                'message' => 'This e-mail is already in use.'
                             ],
                         ],
                     ],
                 ],
-                'password'      => [
+                'password'   => [
                     'required'               => true,
                     'break_chain_on_failure' => true,
                     'filters'                => [
@@ -175,23 +157,19 @@ class Signup extends Form implements InputFilterProviderInterface, AdapterAwareI
                             'name'                   => 'NotEmpty',
                             'break_chain_on_failure' => true,
                             'options'                => [
-                                'messages' => [
-                                    'isEmpty' => 'Password is required and can\'t be empty',
-                                ],
+                                'message' => 'Password is required and can\'t be empty'
                             ],
                         ],
                         [
                             'name'    => 'StringLength',
                             'options' => [
-                                'min'      => 8,
-                                'messages' => [
-                                    'stringLengthTooShort' => 'Password is less than 8 characters long',
-                                ],
+                                'min'     => 8,
+                                'message' => 'Password is less than 8 characters long'
                             ],
                         ],
                     ],
                 ],
-                'cpassword'     => [
+                'cpassword'  => [
                     'required'               => true,
                     'break_chain_on_failure' => true,
                     'filters'                => [
@@ -202,23 +180,19 @@ class Signup extends Form implements InputFilterProviderInterface, AdapterAwareI
                             'name'                   => 'NotEmpty',
                             'break_chain_on_failure' => true,
                             'options'                => [
-                                'messages' => [
-                                    'isEmpty' => 'Confirm Password is required and can\'t be empty',
-                                ],
+                                'message' => 'Confirm Password is required and can\'t be empty'
                             ],
                         ],
                         [
                             'name'    => 'Identical',
                             'options' => [
-                                'token'    => 'password',
-                                'messages' => [
-                                    'notSame' => 'Entered passwords do not match.',
-                                ],
+                                'token'   => 'password',
+                                'message' => 'Entered passwords do not match.'
                             ],
                         ],
                     ],
                 ],
-                'first_name'    => [
+                'first_name' => [
                     'required'               => true,
                     'break_chain_on_failure' => true,
                     'filters'                => [
@@ -229,14 +203,12 @@ class Signup extends Form implements InputFilterProviderInterface, AdapterAwareI
                         [
                             'name'    => 'NotEmpty',
                             'options' => [
-                                'messages' => [
-                                    'isEmpty' => 'First name is required and can\'t be empty',
-                                ],
+                                'message' => 'First name is required and can\'t be empty'
                             ],
                         ],
                     ],
                 ],
-                'last_name'     => [
+                'last_name'  => [
                     'required'               => true,
                     'break_chain_on_failure' => true,
                     'filters'                => [
@@ -247,9 +219,7 @@ class Signup extends Form implements InputFilterProviderInterface, AdapterAwareI
                         [
                             'name'    => 'NotEmpty',
                             'options' => [
-                                'messages' => [
-                                    'isEmpty' => 'Last name is required and can\'t be empty',
-                                ],
+                                'message' => 'Last name is required and can\'t be empty'
                             ],
                         ],
                     ],

@@ -1,21 +1,21 @@
 <?php
 
-namespace Auth\Controller;
+namespace User\Controller;
 
 use \User\Model\User;
 use \Zend\View\Model\ViewModel;
 use \Zend\View\Model\JsonModel;
 use \Zend\Authentication\AuthenticationService;
 use \Application\Controller\BaseActionController;
-use \Auth\Form;
+use \User\Form;
 
 
-class IndexController extends BaseActionController
+class AuthController extends BaseActionController
 {
     public function indexAction()
     {
 
-        $form = $this->getServiceLocator()->get('Auth\LoginForm');
+        $form = $this->getServiceLocator()->get('User\LoginForm');
         /** @var \Zend\Http\Request $request */
         $request = $this->getRequest();
 
