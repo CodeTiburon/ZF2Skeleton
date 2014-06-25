@@ -1,6 +1,6 @@
 <?php
 
-namespace Auth\Form;
+namespace User\Form;
 
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilterProviderInterface;
@@ -90,9 +90,7 @@ class Login extends Form implements InputFilterProviderInterface, AdapterAwareIn
                         'name' => 'NotEmpty',
                         'break_chain_on_failure' => true,
                         'options' => [
-                            'messages' => [
-                                'isEmpty' => 'Email is required and can\'t be empty',
-                            ],
+                            'message' => 'Email is required and can\'t be empty'
                         ],
                     ],
                     [
@@ -101,20 +99,7 @@ class Login extends Form implements InputFilterProviderInterface, AdapterAwareIn
                         'options' => [
                             'allow' => Validator\Hostname::ALLOW_ALL,
                             'useMxCheck' => true,
-                            'messages' => [
-                                'emailAddressInvalidFormat' => 'Email address doesn\'t appear to be valid.',
-                                'emailAddressInvalidMxRecord' => 'Email address doesn\'t appear to be valid.',
-                                'emailAddressDotAtom' => 'Email address doesn\'t appear to be valid.',
-                                'emailAddressQuotedString' => 'Email address doesn\'t appear to be valid.',
-                                'emailAddressInvalidLocalPart' => 'Email address doesn\'t appear to be valid.',
-                                'emailAddressInvalidHostname' => 'Email address doesn\'t appear to be valid.',
-                                'hostnameUnknownTld' => 'Email address doesn\'t appear to be valid.',
-                                'hostnameInvalidUri' => 'Email address doesn\'t appear to be valid.',
-                                'hostnameInvalidLocalName' => 'Email address doesn\'t appear to be valid.',
-                                'hostnameInvalidHostnameSchema' => 'Email address doesn\'t appear to be valid.',
-                                'hostnameInvalidHostname' => 'Email address doesn\'t appear to be valid.',
-                                'hostnameUndecipherableTld' => 'Email address doesn\'t appear to be valid.',
-                            ],
+                            'message' => 'Email address doesn\'t appear to be valid.',
                         ],
                     ],
                     [
@@ -123,9 +108,7 @@ class Login extends Form implements InputFilterProviderInterface, AdapterAwareIn
                             'table' => 'users',
                             'field' => 'email',
                             'adapter' => $this->adapter,
-                            'messages' => [
-                                'noRecordFound' => 'This e-mail was not used on our site.'
-                            ],
+                            'message' => 'This e-mail was not used on our site.'
                         ],
                     ],
                 ],
@@ -140,9 +123,7 @@ class Login extends Form implements InputFilterProviderInterface, AdapterAwareIn
                         'name' => 'NotEmpty',
                         'break_chain_on_failure' => true,
                         'options' => [
-                            'messages' => [
-                                'isEmpty' => 'Password is required and can\'t be empty',
-                            ],
+                            'message' => 'Password is required and can\'t be empty'
                         ],
                     ],
                 ],

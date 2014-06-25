@@ -7,18 +7,14 @@ return [
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
             // using the path /application/:controller/:action
-            'home'    => [
-                'type'          => 'Segment',
+            'home'            => [
+                'type'          => 'Literal',
                 'options'       => [
-                    'route'       => '[/:lang]/',
-                    'constraints' => [
-                        'lang' => '[a-z]{2}?',
-                    ],
-                    'defaults'    => [
+                    'route'    => '/',
+                    'defaults' => [
                         '__NAMESPACE__' => 'User\Controller',
                         'controller'    => 'Index',
                         'action'        => 'index',
-                        'lang'          => 'en',
                     ],
 
                 ],
@@ -37,33 +33,75 @@ return [
                     ],
                 ],
             ],
-            'profile' => [
+            'profile'         => [
                 'type'    => 'Segment',
                 'options' => [
-                    'route'       => '[/:lang]/my-profile',
-                    'constraints' => [
-                        'lang' => '[a-z]{2}?',
-                    ],
-                    'defaults'    => [
+                    'route'    => '[/:lang]/my-profile',
+                    'defaults' => [
                         '__NAMESPACE__' => 'User\Controller',
                         'controller'    => 'Index',
                         'action'        => 'profile',
-                        'lang'          => 'en',
                     ],
                 ],
             ],
-            'save'    => [
+            'save'            => [
                 'type'    => 'Segment',
                 'options' => [
-                    'route'       => '[/:lang]/save',
-                    'constraints' => [
-                        'lang' => '[a-z]{2}?',
-                    ],
-                    'defaults'    => [
+                    'route'    => '[/:lang]/save',
+                    'defaults' => [
                         '__NAMESPACE__' => 'User\Controller',
                         'controller'    => 'Index',
                         'action'        => 'save',
-                        'lang'          => 'en',
+                    ],
+                ],
+            ],
+            'auth'            => [
+                'type'    => 'Literal',
+                'options' => [
+                    'route'    => '/auth',
+                    'defaults' => [
+                        'controller' => 'User\Controller\Auth',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+            'signup'          => [
+                'type'    => 'Literal',
+                'options' => [
+                    'route'    => '/signup',
+                    'defaults' => [
+                        'controller' => 'User\Controller\Auth',
+                        'action'     => 'signup',
+                    ],
+                ],
+            ],
+            'logout'          => [
+                'type'    => 'Literal',
+                'options' => [
+                    'route'    => '/logout',
+                    'defaults' => [
+                        'controller' => 'User\Controller\Auth',
+                        'action'     => 'logout',
+                    ],
+                ],
+            ],
+            'forgotPassword'  => [
+                'type'    => 'Literal',
+                'options' => [
+                    'route'    => '/forgot-password',
+                    'defaults' => [
+                        'controller' => 'User\Controller\Auth',
+                        'action'     => 'forgotPassword',
+                    ],
+                ],
+            ],
+            'restorePassword' => [
+                'type'    => 'Segment',
+                'options' => [
+                    'route'    => '/restore-password/:hash',
+                    'defaults' => [
+                        'controller' => 'User\Controller\Auth',
+                        'action'     => 'restorePassword',
                     ],
                 ],
             ],
@@ -72,11 +110,15 @@ return [
     'service_manager' => [
         'initializers' => [],
         'invokables'   => [
-            'User\UsersMapper'      => 'User\Mapper\Users',
-            'User\UsersService'     => 'User\Service\Users',
-            'User\UploadAvatarForm' => 'User\Form\UploadAvatarForm',
-            'User\UserForm'         => 'User\Form\User',
-            'User\ProfileForm'      => 'User\Form\Profile',
+            'User\UsersMapper'            => 'User\Mapper\Users',
+            'User\UsersService'           => 'User\Service\Users',
+            'User\AuthenticationListener' => 'User\Event\AuthenticationListener',
+            'User\UploadAvatarForm'       => 'User\Form\UploadAvatarForm',
+            'User\ProfileForm'            => 'User\Form\Profile',
+            'User\LoginForm'              => 'User\Form\Login',
+            'User\SignupForm'             => 'User\Form\Signup',
+            'User\ForgotPasswordForm'     => 'User\Form\ForgotPassword',
+            'User\RestorePasswordForm'    => 'User\Form\RestorePassword',
         ],
         'factories'    => [],
     ],
@@ -93,6 +135,7 @@ return [
     'controllers'     => [
         'invokables' => [
             'User\Controller\Index' => 'User\Controller\IndexController',
+            'User\Controller\Auth'  => 'User\Controller\AuthController',
         ],
     ],
     'module_layouts'  => [
