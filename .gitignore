@@ -5,3 +5,8 @@ demos/
 extras/documentation
 /vendor/
 /.idea
+
+/node_modules
+/bower_components
+/public/js
+/public/css
