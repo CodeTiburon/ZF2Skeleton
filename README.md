@@ -2,7 +2,7 @@ ZF2Skeleton
 ===========
 For start use frontend
 
-1) install nodejs
+1) install nodejs\n
 2) npm install
 3) bower install
 
