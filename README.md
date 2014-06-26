@@ -37,7 +37,7 @@ In console<br/>
 <p>Clear folders public/js and public/css, run added task (by default compile vendors files), start watch added tasks (one of the task)</p><br/>
 
 <br/>
->gulp build
+>gulp build<br/>
 <p>Clear folders public/js and public/css, run added task (by default compile vendors files)</p><br/>
 
 <br/>
