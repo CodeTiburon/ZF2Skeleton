@@ -32,11 +32,14 @@ by default have 2 task
 In console<br/>
 1)<br/>
 >gulp default<br/>
+
 <br/>
 <p>Clear folders public/js and public/css, run added task (by default compile vendors files), start watch added tasks (one of the task)</p><br/>
+
 2)<br/>
 >gulp build
 <p>Clear folders public/js and public/css, run added task (by default compile vendors files)</p><br/>
+
 3)<br/>
 >gulp watch<br/>
 <p>Start watch added tasks (one of the task)</p><br/>
