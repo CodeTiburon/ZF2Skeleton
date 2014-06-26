@@ -17,6 +17,7 @@ Main file: <i>bower.json</i><br/>
 </p><br/>
 
 <h3>How to use</h3>
+
 <br/>
 >bower install package-name<br/>
 <br/>
