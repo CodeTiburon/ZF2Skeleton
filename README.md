@@ -12,7 +12,7 @@ Main file: <i>bower.json</i><br/>
 
 <h3>How to use</h3>
 <br/>
->bower install "<package>"<br/>
+>bower install package-name<br/>
 <br/>
 <p>By default to bower.json add bootstrup,lodash.</p>
 
