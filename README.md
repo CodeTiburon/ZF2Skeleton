@@ -43,6 +43,6 @@ In console<br/>
 <br/>
 >gulp watch<br/>
 
-<p>Start watch added tasks (one of the task)</p><br/>
+<p>Start watch added tasks</p><br/>
 
 
