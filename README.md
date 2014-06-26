@@ -6,7 +6,7 @@ For start use frontend
 2) npm install<br/>
 3) bower install<br/>
 
-<h2>Bower like Composer/h2>
+<h2>Bower like Composer</h2>
 <br/>
 Main file: <i>bower.json</i><br/>
 
