@@ -33,19 +33,16 @@ In console<br/>
 
 >gulp default<br/>
 
-<br/>
 <p>Clear folders public/js and public/css, run added task (by default compile vendors files), start watch added tasks (one of the task)</p><br/>
 
 <br/>
 >gulp build<br/>
 
-<br/>
 <p>Clear folders public/js and public/css, run added task (by default compile vendors files)</p><br/>
 
 <br/>
 >gulp watch<br/>
 
-<br/>
 <p>Start watch added tasks (one of the task)</p><br/>
 
 
