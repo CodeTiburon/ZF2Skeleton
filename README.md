@@ -18,7 +18,7 @@ Main file: <i>bower.json</i><br/>
 
 if need more js lib search in http://bower.io/search/<br/>
 <br/>
-<h2>GULP task manager for frontend development (http://gulpjs.com)</h2><br/>
+<h2>GULP - streaming build system (http://gulpjs.com)</h2><br/>
 <br/>
 Main file: <i>gulpfile.js</i><br/>
 <br/>
