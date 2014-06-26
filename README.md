@@ -38,10 +38,14 @@ In console<br/>
 
 <br/>
 >gulp build<br/>
+
+<br/>
 <p>Clear folders public/js and public/css, run added task (by default compile vendors files)</p><br/>
 
 <br/>
 >gulp watch<br/>
-<p>Start watch added tasks (one of the task)</p><br/>
+
+<br/>
+<p>Start watch added tasks (one of the task)</p>
 
 
