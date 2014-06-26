@@ -9,6 +9,12 @@ For start use frontend
 <h2>Bower - package manager for the web</h2>
 <br/>
 Main file: <i>bower.json</i><br/>
+<p>By default bower create folder with depend. /bower_components, if want change this directory create .bowerrc file in root directory and add next content:</p>
+<p>
+{<br/>
+  "directory": "public/bower_components"<br/>
+}<br/>
+</p><br/>
 
 <h3>How to use</h3>
 <br/>
